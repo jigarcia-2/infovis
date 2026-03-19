@@ -1,0 +1,24 @@
+# datos intermedios
+data/raw/
+data/processed/
+data/normalized/
+data/selected/
+data/aggregated/
+
+# mantener la carpeta con los archivos finales
+!data/final/
+!data/final/*
+!data/final/behavior_daily_final.xlsx
+!data/final/behavior_daily_viz.xlsx
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# vscode
+.vscode/
+
+# sistema
+.DS_Store
