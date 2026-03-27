@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Exploraciones en visualización</title>
-
   <style>
     body {
       margin: 0;
@@ -13,25 +12,21 @@
       color: #1f1f1f;
       line-height: 1.6;
     }
-
     main {
       max-width: 1100px;
       margin: 0 auto;
       padding: 40px 24px 60px;
     }
-
     h1 {
       font-size: 2rem;
       margin-bottom: 12px;
     }
-
     .section-description {
       font-size: 1.1rem;
       color: #4a4a4a;
       max-width: 800px;
       margin-bottom: 32px;
     }
-
     .card {
       background: #ffffff;
       border: 1px solid #ddd7cf;
@@ -40,20 +35,17 @@
       margin-bottom: 28px;
       overflow: hidden;
     }
-
     .card-title {
       font-size: 1.8rem;
       margin-top: 0;
       margin-bottom: 10px;
     }
-
     .card-text {
       font-size: 1rem;
       color: #4a4a4a;
       margin-bottom: 22px;
       max-width: 950px;
     }
-
     object,
     iframe,
     img {
@@ -61,11 +53,6 @@
       border: none;
       display: block;
     }
-
-    .raw-wrapper object {
-      min-height: 750px;
-    }
-
     .footer {
       margin-top: 40px;
       padding-top: 20px;
@@ -75,7 +62,6 @@
     }
   </style>
 </head>
-
 <body>
   <main>
     <section>
@@ -84,12 +70,16 @@
         Ejercicios y pruebas realizados con distintas herramientas de visualización durante el proceso de aprendizaje.
       </p>
 
-      <article class="card raw-wrapper">
+      <article class="card">
         <h2 class="card-title">RAWGraphs · Horizon Chart</h2>
         <p class="card-text">
           Categorías de consumo en la Unión Europea y sus variaciones en los precios a lo largo del tiempo.
         </p>
-        <object data="./horizon_chart.svg" type="image/svg+xml"></object>
+        <img
+          src="./horizon_chart.svg"
+          alt="Horizon Chart — categorías de consumo en la Unión Europea"
+          style="width:100%; height:auto; display:block;"
+        >
       </article>
 
       <article class="card">
