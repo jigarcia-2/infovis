@@ -103,6 +103,7 @@ El enfoque es **exploratorio, narrativo y reproducible**.
 ## Visualización online del proyecto principal
 
 
+https://jigarcia-2.github.io/infovis/visualizacion_datos_personales/
 
 ---
 
