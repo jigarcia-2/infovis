@@ -59,28 +59,24 @@ def main():
             df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
 
     # =========================
-    # AJUSTES DE FORMATO PARA VISUALIZACIÓN
+    # AJUSTES DE FORMATO
     # =========================
     if "distance_km" in df.columns:
         df["distance_km"] = df["distance_km"].round(1)
 
-    if "active_kcal" in df.columns:
-        df["active_kcal"] = df["active_kcal"].round(0).astype(int)
+    int_cols = [
+        "active_kcal",
+        "music_minutes_total",
+        "music_unique_artists",
+        "podcast_minutes_total",
+        "netflix_minutes_total",
+        "netflix_interactions",
+        "ml_purchases",
+    ]
 
-    if "music_minutes_total" in df.columns:
-        df["music_minutes_total"] = df["music_minutes_total"].round(0).astype(int)
-
-    if "podcast_minutes_total" in df.columns:
-        df["podcast_minutes_total"] = df["podcast_minutes_total"].round(0).astype(int)
-
-    if "netflix_minutes_total" in df.columns:
-        df["netflix_minutes_total"] = df["netflix_minutes_total"].round(0).astype(int)
-
-    if "netflix_interactions" in df.columns:
-        df["netflix_interactions"] = df["netflix_interactions"].round(0).astype(int)
-
-    if "ml_purchases" in df.columns:
-        df["ml_purchases"] = df["ml_purchases"].round(0).astype(int)
+    for col in int_cols:
+        if col in df.columns:
+            df[col] = df[col].round(0).astype(int)
 
     # =========================
     # COLUMNAS CATEGÓRICAS
@@ -88,7 +84,7 @@ def main():
     categorical_defaults = {
         "music_main_context": "sin_musica",
         "podcast_main_topic": "sin_podcast",
-        "netflix_main_topic": "sin_netflix",
+        "netflix_content_topic": "sin_netflix",
         "ml_main_category": "sin_compras",
     }
 
@@ -114,7 +110,7 @@ def main():
         "podcast_main_topic",
         "netflix_minutes_total",
         "netflix_interactions",
-        "netflix_main_topic",
+        "netflix_content_topic",
         "ml_purchases",
         "ml_main_category",
     ]
@@ -123,15 +119,19 @@ def main():
     df_final = df[existing_final_cols].copy()
 
     # =========================
-    # GUARDAR SOLO EXCEL
+    # GUARDAR CSV Y EXCEL
     # =========================
-    final_file = output_path / "behavior_daily_final.xlsx"
-    df_final.to_excel(final_file, index=False)
+    final_csv = output_path / "behavior_daily_final.csv"
+    final_excel = output_path / "behavior_daily_final.xlsx"
+
+    df_final.to_csv(final_csv, index=False, encoding="utf-8")
+    df_final.to_excel(final_excel, index=False)
 
     print("\nDataset final integrado creado:")
     print(df_final.head())
     print("Shape:", df_final.shape)
-    print(f"\nArchivo guardado en: {final_file}")
+    print(f"\nArchivo CSV guardado en: {final_csv}")
+    print(f"Archivo Excel guardado en: {final_excel}")
 
 
 if __name__ == "__main__":

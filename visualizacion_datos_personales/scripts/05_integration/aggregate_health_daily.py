@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 
 # =========================
-# RUTAS ROBUSTAS
+# RUTAS 
 # =========================
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -28,7 +28,6 @@ def main():
     print("Shape original:", df.shape)
 
     df["value_numeric"] = pd.to_numeric(df["value_numeric"], errors="coerce")
-    df["audio_exposure_hours"] = pd.to_numeric(df["audio_exposure_hours"], errors="coerce")
 
     # =========================
     # AGREGACIÓN PRINCIPAL DE VARIABLES HEALTH
@@ -47,16 +46,7 @@ def main():
         "HKQuantityTypeIdentifierStepCount": "steps",
         "HKQuantityTypeIdentifierDistanceWalkingRunning": "distance_km",
         "HKQuantityTypeIdentifierActiveEnergyBurned": "energy_burned",
-        "HKQuantityTypeIdentifierHeadphoneAudioExposure": "audio_exposure_value",
     })
-
-    # =========================
-    # AGREGACIÓN DE DURACIÓN DE EXPOSICIÓN DE AURICULARES
-    # =========================
-    audio_daily = (
-        df.groupby("date", as_index=False)["audio_exposure_hours"]
-        .sum()
-    )
 
     # =========================
     # CALENDARIO BASE
@@ -71,9 +61,8 @@ def main():
     # MERGE FINAL
     # =========================
     health_daily = calendar_df.merge(pivot, on="date", how="left")
-    health_daily = health_daily.merge(audio_daily, on="date", how="left")
 
-    for col in ["steps", "distance_km", "energy_burned", "audio_exposure_value", "audio_exposure_hours"]:
+    for col in ["steps", "distance_km", "energy_burned"]:
         if col in health_daily.columns:
             health_daily[col] = health_daily[col].fillna(0)
 

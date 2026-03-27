@@ -21,7 +21,7 @@ def duration_to_minutes(duration_str):
         return None
 
 
-def most_representative_topic(topic_series, trailer_series, default_value="sin_dato"):
+def most_representative_topic(topic_series, trailer_series, default_value="sin_netflix"):
     """
     Devuelve la temática predominante del día, ignorando trailers
     si existe al menos otro contenido no-trailer.
@@ -66,7 +66,7 @@ def main():
             lambda g: pd.Series({
                 "netflix_minutes_total": g["netflix_minutes"].sum(),
                 "netflix_interactions": g["Title"].count(),
-                "netflix_main_topic": most_representative_topic(
+                "netflix_content_topic": most_representative_topic(
                     g["content_topic"],
                     g["is_trailer"]
                 )
@@ -77,7 +77,7 @@ def main():
 
     daily["netflix_minutes_total"] = daily["netflix_minutes_total"].fillna(0)
     daily["netflix_interactions"] = daily["netflix_interactions"].fillna(0)
-    daily["netflix_main_topic"] = daily["netflix_main_topic"].fillna("sin_dato")
+    daily["netflix_content_topic"] = daily["netflix_content_topic"].fillna("sin_netflix")
 
     daily.to_csv(output_path, index=False, encoding="utf-8")
 

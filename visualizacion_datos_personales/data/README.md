@@ -1,142 +1,120 @@
- # Documentación de los conjuntos de datos
+# Pipeline de datos — 
 
-Esta carpeta contiene los distintos conjuntos de datos generados durante el proceso de construcción del dataset integrado del proyecto  
-**Comportamiento Digital y Patrones de Rutina Diaria**.
+Esta carpeta contiene el flujo completo de procesamiento de datos utilizado para construir el dataset integrado del proyecto:
 
-Los archivos aquí presentes corresponden a versiones intermedias en formato CSV que forman parte del flujo de transformación necesario para integrar múltiples fuentes de comportamiento digital personal.
-
-El objetivo de este proceso es consolidar información proveniente de distintas plataformas en un único dataset estructurado, apto para análisis exploratorio y desarrollo de visualizaciones.
-
-La unidad analítica adoptada para la integración de los cinco conjuntos de datos es la **fecha**, considerando el huso horario de Argentina.  
-Esta decisión permite analizar patrones conductuales diarios y mantener coherencia temporal entre fuentes heterogéneas.
-
-La organización de los datos respeta una lógica de transformación progresiva, donde cada carpeta representa una etapa específica del flujo de preparación del dataset final.
+El objetivo  es transformar datos personales provenientes de múltiples plataformas digitales en un dataset estructurado a nivel diario, apto para análisis exploratorio y visualización.
 
 ---
-## Esquema conceptual de transformación de datos  
 
-El procesamiento de los datos sigue una lógica progresiva de transformación:
+## Flujo conceptual de transformación de datos
 
-raw → processed → normalized → selected → aggregated → final
+El procesamiento sigue una lógica progresiva de refinamiento estructural:
 
-Donde cada etapa representa una instancia de refinamiento estructural y analítico:
+raw → processed → normalized → selected → aggregated → final  
 
-- **raw** → datos originales exportados desde las distintas plataformas  
+Cada etapa representa una instancia específica del pipeline:
+
+- **raw** → datos originales exportados desde las plataformas digitales  
 - **processed** → parsing inicial y conversión a formato tabular  
 - **normalized** → estandarización temporal y homogeneización estructural  
 - **selected** → selección de variables relevantes para el análisis  
-- **aggregated** → síntesis diaria por fuente de datos  
+- **aggregated** → agregación diaria por fuente de datos  
 - **final** → dataset integrado analítico  
 
-Adicionalmente, se generó un dataset derivado optimizado para visualización.
+Adicionalmente, se genera un dataset derivado optimizado para visualización.
 
 ---
 
-## Fuentes de datos originales  
+## Fuentes de datos
 
-El proyecto integra datos personales provenientes de múltiples plataformas digitales:
+El proyecto integra datos personales provenientes de distintas plataformas digitales:
 
-- **Apple Health (XML)**  
-  Registros de actividad física y movilidad diaria.
+- Apple Health → actividad física y movilidad diaria  
+- Spotify → consumo musical  
+- Podcasts → consumo de contenido hablado  
+- Netflix → comportamiento audiovisual  
+- Mercado Libre → comportamiento de compras online  
 
-- **Spotify Extended Streaming History (JSON)**  
-  Historial detallado de reproducción musical.
-
-- **Consumo de podcasts (JSON)**  
-  Información sobre escucha de contenido hablado.
-
-- **Mercado Libre (JSON anidado)**  
-  Historial de compras online con estructura jerárquica.
-
-- **Netflix (CSV)**  
-  Historial de consumo audiovisual.
+Todos los datos se agregan a nivel **diario**, utilizando el huso horario de Argentina como referencia temporal.
 
 ---
 
-## Estructura de carpetas  
+## Estructura de carpetas
 
-Cada carpeta corresponde a una etapa específica del proceso de transformación:
+Cada carpeta corresponde a una etapa del pipeline de procesamiento:
 
 - `raw/` → datos originales sin procesar  
-- `processed/` → datos convertidos a estructura tabular  
+- `processed/` → datos transformados a formato tabular  
 - `normalized/` → datos con estandarización temporal  
-- `selected/` → subconjunto de variables analíticas  
+- `selected/` → variables analíticas seleccionadas  
 - `aggregated/` → datasets diarios por fuente  
-- `final/` → dataset integrado  
-- `visualization/` → dataset derivado para visualización  
+- `final/` → dataset integrado final  
 
 ---
 
-## Integración final  
+## Datasets finales
 
-El dataset analítico integrado se encuentra en:
+Se generan dos datasets finales:
 
-`data/final/behavior_daily_final.xlsx`
+### Dataset analítico integrado  
+`data/final/behavior_daily_final.(csv | xlsx)`
 
-Este archivo contiene la estructura consolidada resultante del proceso de integración de todas las fuentes.
+Contiene la integración completa de todas las fuentes de datos.
 
----
+### Dataset derivado para visualización  
+`data/final/behavior_daily_viz.(csv | xlsx)`
 
-## Dataset derivado para visualización  
+Incluye transformaciones adicionales orientadas a la narrativa visual:
 
-Posteriormente a la integración, se realizó una etapa adicional de preparación orientada a la construcción de visualizaciones.
-
-En esta fase se llevaron a cabo las siguientes transformaciones:
-
+- redondeo de métricas  
 - simplificación de variables  
-- redondeo de métricas continuas  
 - renombrado de columnas  
-- eliminación de campos no relevantes para la narrativa visual  
-
-El dataset resultante es:
-
-`data/final/behavior_daily_viz.xlsx`
-
-Este archivo es el utilizado en las visualizaciones desarrolladas en el proyecto.
-
----
-## Variables del dataset orientado a visualización  
-
-El dataset derivado para visualización contiene variables agregadas a nivel diario, organizadas en distintas dimensiones analíticas:
-
-### Dimensión temporal  
-- `date`  
-- `weekday`  
-- `month`  
-- `year`  
-
-### Movilidad y actividad física  
-- `steps`  
-- `distance_km`  
-- `calories`  
-
-### Consumo digital  
-- `music_minutes`  
-- `podcast_minutes`  
-- `netflix_minutes`  
-- `netflix_interactions`  
-
-### Categorizaciones principales de consumo  
-- `music_main_type`  
-- `music_main_origin`  
-- `podcast_main_topic`  
-- `netflix_main_topic`  
-
-### Comportamiento de compra online  
-- `ml_purchases`  
-- `ml_main_category`  
-
-Estas variables permiten representar de forma sintética distintas dimensiones del comportamiento digital cotidiano y facilitan la construcción de una narrativa visual integrada.
+- selección de variables relevantes para visualización  
 
 ---
 
-## Consideraciones de privacidad  
+## Variables principales del dataset de visualización
 
-Los datos originales no se incluyen en el repositorio debido a que contienen información personal sensible.
+El dataset derivado contiene variables agregadas a nivel diario organizadas en distintas dimensiones:
 
-El proyecto publica únicamente:
+**Dimensión temporal**
+- date  
+- weekday  
+- month  
+- year  
+
+**Movilidad y actividad física**
+- steps  
+- distance_km  
+- calorias  
+
+**Consumo digital**
+- music_minutes  
+- podcast_minutes  
+- netflix_minutes  
+- netflix_interactions  
+
+**Categorización de consumo**
+- music_main_context  
+- podcast_main_topic  
+- netflix_content_topic  
+
+**Comportamiento de compras**
+- ml_purchases  
+- ml_main_category  
+
+---
+
+## Privacidad
+
+Los datos personales originales no se incluyen en el repositorio.
+
+Se publican únicamente:
 
 - datasets agregados a nivel diario  
-- scripts de transformación de datos  
+- scripts de procesamiento reproducible  
 - documentación metodológica  
-- resultados visuales derivados  
+- outputs analíticos y visuales  
+
+
+

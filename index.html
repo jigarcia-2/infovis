@@ -3,233 +3,89 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Visualización de Datos Personales</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Exploraciones en visualización</title>
 
   <style>
-    :root {
-      --bg: #F7F5F2;
-      --surface: #FFFFFF;
-      --text: #161616;
-      --muted: #5F5F5F;
-      --accent: #A78BFA;
-      --accent-dark: #7C3AED;
-      --border: #E7E2DA;
-      --shadow: 0 10px 30px rgba(0,0,0,0.06);
-      --radius: 20px;
-      --max-width: 1100px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
+      font-family: Arial, sans-serif;
+      background: #f5f3ef;
+      color: #1f1f1f;
+      line-height: 1.6;
     }
 
-    .page {
-      max-width: var(--max-width);
+    main {
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 40px 24px 80px;
-    }
-
-    .hero {
-      padding: 40px 0 48px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 40px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent-dark);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 18px;
+      padding: 40px 24px 60px;
     }
 
     h1 {
-      font-size: clamp(42px, 7vw, 78px);
-      line-height: 0.95;
-      margin: 0 0 20px;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      max-width: 900px;
-    }
-
-    h1 .accent {
-      color: var(--accent);
-    }
-
-    .hero p {
-      font-size: 20px;
-      color: var(--muted);
-      max-width: 760px;
-      margin: 0;
-    }
-
-    .section {
-      margin-top: 42px;
-    }
-
-    .section-header {
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      font-size: 28px;
-      margin: 0 0 8px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-size: 2rem;
+      margin-bottom: 12px;
     }
 
     .section-description {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 760px;
+      font-size: 1.1rem;
+      color: #4a4a4a;
+      max-width: 800px;
+      margin-bottom: 32px;
     }
 
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
-      margin-top: 20px;
+      background: #ffffff;
+      border: 1px solid #ddd7cf;
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 28px;
       overflow: hidden;
     }
 
-    .card + .card {
-      margin-top: 28px;
-    }
-
     .card-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin: 0 0 8px;
+      font-size: 1.8rem;
+      margin-top: 0;
+      margin-bottom: 10px;
     }
 
     .card-text {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 15px;
+      font-size: 1rem;
+      color: #4a4a4a;
+      margin-bottom: 22px;
+      max-width: 950px;
     }
 
     object,
     iframe,
-    .tableauPlaceholder,
-    .flourish-embed {
+    img {
       width: 100%;
-      max-width: 100%;
-      border-radius: 14px;
+      border: none;
+      display: block;
     }
 
     .raw-wrapper object {
-      min-height: 480px;
-      background: #fff;
+      min-height: 750px;
     }
 
     .footer {
-      margin-top: 60px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .footer strong {
-      color: var(--text);
-    }
-
-    @media (max-width: 768px) {
-      .page {
-        padding: 28px 16px 56px;
-      }
-
-      .card {
-        padding: 16px;
-      }
-
-      .hero p {
-        font-size: 18px;
-      }
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd7cf;
+      font-size: 0.95rem;
+      color: #555;
     }
   </style>
 </head>
+
 <body>
-  <main class="page">
-    <section class="hero">
-      <div class="eyebrow">Proyecto personal · Visualización de Datos</div>
-      <h1>
-        Comportamiento digital y
-        <span class="accent">patrones de rutina diaria</span>
-      </h1>
-      <p>
-        Exploración visual de datos personales autogenerados para analizar relaciones
-        entre movilidad, consumo digital y hábitos de compra a lo largo del tiempo.
+  <main>
+    <section>
+      <h1>Exploraciones en visualización</h1>
+      <p class="section-description">
+        Ejercicios y pruebas realizados con distintas herramientas de visualización durante el proceso de aprendizaje.
       </p>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <h2>Proyecto Principal</h2>
-        <p class="section-description"></p>
-      </div>
-
-      <article class="card">
-        <h3 class="card-title">Tableau · Visualización de datos personales</h3>
-        <p class="card-text"></p>
-
-        <div class="tableauPlaceholder" id="viz1773805463431" style="position: relative">
-          <noscript>
-            <a href="#">
-              <img
-                alt="Dashboard 1"
-                src="https://public.tableau.com/views/Proyectovisualizacion_17738036550990/Dashboard1?:language=es-ES&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
-                style="border: none"
-              />
-            </a>
-          </noscript>
-          <object class="tableauViz" style="display:none;">
-            <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
-            <param name="embed_code_version" value="3" />
-            <param name="site_root" value="" />
-            <param name="name" value="Proyectovisualizacion_17738036550990/Dashboard1" />
-            <param name="tabs" value="no" />
-            <param name="toolbar" value="yes" />
-            <param name="static_image" value="https://public.tableau.com/static/images/Pr/Proyectovisualizacion_17738036550990/Dashboard1/1.png" />
-            <param name="animate_transition" value="yes" />
-            <param name="display_static_image" value="yes" />
-            <param name="display_spinner" value="yes" />
-            <param name="display_overlay" value="yes" />
-            <param name="display_count" value="yes" />
-            <param name="language" value="en-US" />
-            <param name="filter" value="publish=yes" />
-          </object>
-        </div>
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <h2>Exploraciones complementarias</h2>
-        <p class="section-description">
-          Ejercicios y pruebas de visualización realizados con distintas herramientas durante el proceso de aprendizaje.
-        </p>
-      </div>
 
       <article class="card raw-wrapper">
-        <h3 class="card-title">RAWGraphs · Horizon Chart</h3>
+        <h2 class="card-title">RAWGraphs · Horizon Chart</h2>
         <p class="card-text">
           Categorías de consumo en la Unión Europea y sus variaciones en los precios a lo largo del tiempo.
         </p>
@@ -237,7 +93,7 @@
       </article>
 
       <article class="card">
-        <h3 class="card-title">Flourish</h3>
+        <h2 class="card-title">Flourish</h2>
         <p class="card-text">
           El gráfico muestra la evolución de las causas de mortalidad de soldados británicos hospitalizados durante la Guerra de Crimea. La mayoría de las muertes se asociaron con enfermedades infecciosas.
         </p>
@@ -246,7 +102,6 @@
           <noscript>
             <img
               src="https://public.flourish.studio/visualisation/27939023/thumbnail"
-              width="100%"
               alt="Visualización Flourish"
             />
           </noscript>
@@ -254,11 +109,11 @@
       </article>
 
       <article class="card">
-        <h3 class="card-title">Datawrapper · Range Bar</h3>
+        <h2 class="card-title">Datawrapper · Range Bar</h2>
         <p class="card-text">
           Comparación visual de preferencias de toppings de pizza en el Reino Unido mediante barras de rango.
         </p>
-        <div style="min-height:505px" id="datawrapper-vis-fY97U">
+        <div style="min-height: 505px;" id="datawrapper-vis-fY97U">
           <script
             type="text/javascript"
             defer
@@ -269,7 +124,7 @@
           <noscript>
             <img
               src="https://datawrapper.dwcdn.net/fY97U/full.png"
-              alt="Preferencias de toppings de pizza en el Reino Unido (Range Plot)"
+              alt="Preferencias de toppings de pizza en el Reino Unido"
             />
           </noscript>
         </div>
@@ -277,26 +132,8 @@
     </section>
 
     <footer class="footer">
-      <p><strong>Autora:</strong> Jimena Garcia · <strong>Materia:</strong> Visualización de Datos</p>
+      <p><strong>Autora:</strong> Jimena García · <strong>Materia:</strong> Visualización de Datos</p>
     </footer>
   </main>
-
-  <script type="text/javascript">
-    var divElement = document.getElementById('viz1773805463431');
-    var vizElement = divElement.getElementsByTagName('object')[0];
-if (divElement.offsetWidth > 800) {
-  vizElement.style.width = '100%';
-  vizElement.style.height = '900px';
-} else if (divElement.offsetWidth > 500) {
-  vizElement.style.width = '100%';
-  vizElement.style.height = '800px';
-} else {
-  vizElement.style.width = '100%';
-  vizElement.style.height = '700px';
-}
-    var scriptElement = document.createElement('script');
-    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-    vizElement.parentNode.insertBefore(scriptElement, vizElement);
-  </script>
-</body>  
+</body>
 </html>

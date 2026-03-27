@@ -141,24 +141,24 @@ def build_topic_mapping():
         "la diplomática": "cultural_historico",
         "el último baile": "cultural_historico",
 
-        # COMEDIA / LIVIANO
-        "envidiosa": "comedia_liviano",
-        "chicas buenas": "comedia_liviano",
-        "ghosts": "comedia_liviano",
-        "bella y las bestias": "comedia_liviano",
-        "younger": "comedia_liviano",
-        "machos alfa": "comedia_liviano",
-        "emily en parís": "comedia_liviano",
-        "emily in paris": "comedia_liviano",
-        "fantasmas": "comedia_liviano",
-        "muertos s.l.": "comedia_liviano",
-        "yo no soy mendoza": "comedia_liviano",
-        "el niñero": "comedia_liviano",
-        "división palermo": "comedia_liviano",
-        "shameless": "comedia_liviano",
-        "young sheldon": "comedia_liviano",
-        "la odisea de los giles": "comedia_liviano",
-        "fubar": "comedia_liviano",
+        # COMEDIA
+        "envidiosa": "comedia",
+        "chicas buenas": "comedia",
+        "ghosts": "comedia",
+        "bella y las bestias": "comedia",
+        "younger": "comedia",
+        "machos alfa": "comedia",
+        "emily en parís": "comedia",
+        "emily in paris": "comedia",
+        "fantasmas": "comedia",
+        "muertos s.l.": "comedia",
+        "yo no soy mendoza": "comedia",
+        "el niñero": "comedia",
+        "división palermo": "comedia",
+        "shameless": "comedia",
+        "young sheldon": "comedia",
+        "la odisea de los giles": "comedia",
+        "fubar": "comedia",
 
         # CIENCIA FICCIÓN
         "stranger things": "ciencia_ficcion",
@@ -215,7 +215,7 @@ def categorize_content_topic(title, topic_map):
     if any(word in title_norm for word in [
         "comedia", "humor", "divert", "sitcom"
     ]):
-        return "comedia_liviano"
+        return "comedia"
 
     if any(word in title_norm for word in [
         "alien", "espacio", "futuro", "robot", "ciencia ficción",
