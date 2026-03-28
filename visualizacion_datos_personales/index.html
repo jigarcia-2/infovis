@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
  
- 
   <style>
     :root {
       --ink: #1A1A1A;
@@ -343,7 +342,7 @@
       border-top: 3px double var(--ink);
       padding: 32px 40px;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 24px;
       max-width: var(--max);
       margin-left: auto;
@@ -366,6 +365,36 @@
       margin-bottom: 4px;
     }
  
+    /* ── GITHUB LINK ── */
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      margin-top: 4px;
+      transition: color 0.2s ease;
+    }
+ 
+    .github-link:hover {
+      color: var(--accent);
+    }
+ 
+    .github-link:hover .github-icon {
+      filter: grayscale(0) brightness(0.6) sepia(1) hue-rotate(240deg) saturate(5);
+    }
+ 
+    .github-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      filter: grayscale(1);
+      transition: filter 0.2s ease;
+      flex-shrink: 0;
+    }
+ 
     /* ── SCROLL FADE IN ── */
     .fade-up {
       opacity: 0;
@@ -383,10 +412,14 @@
       .masthead { padding: 10px 20px; }
       .hero, .chapter, .pullquote, .colophon { padding-left: 20px; padding-right: 20px; }
       .hero-body { grid-template-columns: 1fr; }
-      .colophon { grid-template-columns: 1fr; }
+      .colophon { grid-template-columns: 1fr 1fr; }
       .chapter-num { font-size: 48px; }
       .viz-embed, .annotation { padding-left: 16px; padding-right: 16px; margin-left: 16px; margin-right: 16px; }
       .tableau-wrapper { height: 500px; }
+    }
+ 
+    @media (max-width: 480px) {
+      .colophon { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -394,9 +427,9 @@
  
   <!-- MASTHEAD -->
   <header class="masthead">
-    <span class="masthead-label">Visualización de Datos · 2025</span>
+    <span class="masthead-label">Visualización de Datos </span>
     <span class="masthead-title">Jimena T. Garcia</span>
-    <span class="masthead-issue">Buenos Aires<br>Argentina</span>
+    <span class="masthead-issue">Buenos Aires · Argentina</span>
   </header>
  
   <!-- HERO -->
@@ -408,7 +441,7 @@
     <p class="hero-subtitle">¿Qué dicen mis datos sobre mí?</p>
     <div class="hero-body">
       <p class="hero-intro">
-        Durante 2025 recopilé datos de mis propias aplicaciones — Netflix, Spotify, Mercado Libre e iPhone Health — para explorar si hay patrones reales en mi comportamiento digital, mi movilidad y mis hábitos de consumo. Esta es la historia que encontré.
+       Recopilé datos de mis propias aplicaciones — Netflix, Spotify, Mercado Libre e iPhone Health — para explorar si hay patrones reales en mi comportamiento digital, mi movilidad y mis hábitos de consumo. Esta es la historia que encontré.
       </p>
       <div class="hero-meta">
         <strong>Fuentes de datos</strong>
@@ -597,6 +630,22 @@
       Mercado Libre Purchases<br>
       iPhone Health Export
     </div>
+    <div class="colophon-item">
+      <strong>Repositorio</strong>
+      <a
+        href="https://github.com/jigarcia-2/infovis/tree/main/visualizacion_datos_personales"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="github-link"
+      >
+        <img
+          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+          alt="GitHub"
+          class="github-icon"
+        >
+        Ver en GitHub
+      </a>
+    </div>
   </footer>
  
   <!-- SCROLL ANIMATION -->
@@ -611,12 +660,7 @@
  
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
  
-    /* ── TABLEAU SCALE FIX ──
-       El iframe de Tableau tiene ancho nativo fijo de 1400px.
-       Calculamos qué ratio necesitamos para que entre en el contenedor
-       sin scroll, y aplicamos transform:scale() + ajustamos la altura
-       del wrapper para que no quede espacio vacío abajo.
-    */
+    /* ── TABLEAU SCALE FIX ── */
     function scaleTableau() {
       const wrapper = document.getElementById('tableau-wrapper');
       const iframe  = document.getElementById('tableau-iframe');
@@ -628,16 +672,12 @@
       const scale = containerW / nativeW;
  
       iframe.style.transform = `scale(${scale})`;
-      // Ajustar altura del wrapper al alto visual resultante
       wrapper.style.height = (nativeH * scale) + 'px';
     }
  
-    // Ejecutar al cargar y en cada resize
     window.addEventListener('load',   scaleTableau);
     window.addEventListener('resize', scaleTableau);
-    // También ejecutar pronto por si el DOM ya está listo
     document.addEventListener('DOMContentLoaded', scaleTableau);
   </script>
 </body>
 </html>
- 
